@@ -1,17 +1,18 @@
-import { NavLink } from "@mantine/core";
+import { NavLink, Box } from "@mantine/core";
 import React, { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
+import "../../styles/styles.css";
 
 const HeaderContent: FC = () => {
   const location = useLocation();
 
   return (
-    <div style={{ display: "flex", alignItems: "center", flexDirection: "row" }}>
+    <div className="container">
       <Link to="/">
         <img src={logo} alt="Schmell" width={300} />
       </Link>
-      <div style={{ marginLeft: "auto", display: "flex" }}>
+      <Box sx={{ display: "flex" }}>
         <NavLink
           label="Kontakt"
           component={Link}
@@ -26,7 +27,7 @@ const HeaderContent: FC = () => {
           active={location.pathname === "/privacy"}
           color={"gold.6"}
         />
-      </div>
+      </Box>
     </div>
   );
 };

@@ -2,12 +2,16 @@ import { AppShell, Header, MantineProvider } from "@mantine/core";
 import React, { FC, ReactNode } from "react";
 import colors from "../../constants/colors";
 import { theme } from "../../lib/mantine/theme";
+import HeaderContent from "../Header";
+import { useMediaQuery } from "@mantine/hooks";
 
 interface AppWrapperProps {
   children: ReactNode;
 }
 
 const AppWrapper: FC<AppWrapperProps> = ({ children }) => {
+  const isSmallScreen = useMediaQuery("(max-width: 768px)");
+
   return (
     <MantineProvider withNormalizeCSS withGlobalStyles theme={theme}>
       <AppShell
@@ -18,15 +22,14 @@ const AppWrapper: FC<AppWrapperProps> = ({ children }) => {
         }}
         header={
           <Header
-            height={95}
+            height={isSmallScreen ? 150 : 95}
             p="sm"
             sx={{
               borderRadius: 20,
               margin: 12,
             }}
           >
-            <h1>Header</h1>
-            {/* <HeaderContent /> */}
+            <HeaderContent />
           </Header>
         }
       >
