@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/promise-function-async */
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Alert,
   Box,
@@ -31,12 +31,15 @@ const Contact = (): JSX.Element => {
       accepted: (value: boolean) => !value && "Du må godta vilkårene",
     },
   });
-  const [state, handleSubmit] = useFormspreeForm("mlevplvg");
+  const formKey: string = process.env.REACT_APP_FORMSPREE_KEY ?? "";
+  useEffect(() => {
+    console.log(formKey);
+  }, [formKey]);
+
+  const [state, handleSubmit] = useFormspreeForm(formKey);
 
   const handleFormSubmit = async (values: ContactValues) => {
-    console.log(values);
-    const data = await handleSubmit(values);
-    console.log(data);
+    await handleSubmit(values);
   };
 
   const isContact = form.values.type === "C";
