@@ -1,7 +1,7 @@
 import { AppShell, Header, MantineProvider } from "@mantine/core";
 import React, { FC, ReactNode } from "react";
-import colors from "../../constants/colors";
-import { theme } from "../../lib/mantine/theme";
+import { colors } from "../../constants";
+import { theme } from "../../lib";
 import HeaderContent from "../Header";
 import { useMediaQuery } from "@mantine/hooks";
 

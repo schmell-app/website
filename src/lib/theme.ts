@@ -1,5 +1,5 @@
 import { MantineThemeOverride } from "@mantine/core";
-import colors from "../../constants/colors";
+import { colors } from "../constants";
 
 export const theme: MantineThemeOverride = {
   components: {

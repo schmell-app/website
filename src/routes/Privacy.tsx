@@ -1,10 +1,9 @@
 import { ActionIcon, Anchor, Container, List } from "@mantine/core";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import ENFlag from "../assets/vectors/flags/ENFlag";
-import NBFlag from "../assets/vectors/flags/NBFlag";
-import AppWrapper from "../components/wrappers/AppWrapper";
-import usePrivacy from "../hooks/privacy";
+import { ENFlag, NBFlag } from "../assets";
+import { AppWrapper } from "../components";
+import { usePrivacy } from "../hooks";
 import { IconMail, IconWorldWww } from "@tabler/icons";
 
 const Privacy = (): JSX.Element => {

@@ -1,6 +1,5 @@
 import { Carousel } from "@mantine/carousel";
-import Slides from "../components/Slides";
-import AppWrapper from "../components/wrappers/AppWrapper";
+import { AppWrapper, Slides } from "../components";
 import React from "react";
 import { useMediaQuery } from "@mantine/hooks";
 
