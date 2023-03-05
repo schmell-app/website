@@ -1,8 +1,11 @@
-export type ContactType = "F" | "C";
+export enum ContactType {
+  Feedback = "Feedback",
+  Contact = "Contact",
+}
 
-export interface ContactValues {
+export interface CreateContactForm {
   email?: string;
   message: string;
   type: ContactType;
-  accepted: boolean;
+  acceptedTerms: boolean;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Image } from "@mantine/core";
 import iPhoneHome from "../../assets/img/iPhoneHome.png";
-import AppStoreBlackButton from "../../assets/vectors/common/AppStoreBlackButton";
+import { AppStoreBlackButton } from "../../assets";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mantine/hooks";
 

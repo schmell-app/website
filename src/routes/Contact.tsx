@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/promise-function-async */
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Alert,
   Box,
@@ -13,36 +12,34 @@ import {
   TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import AppWrapper from "../components/wrappers/AppWrapper";
-import { ContactType, ContactValues } from "../types/contact";
-import { useForm as useFormspreeForm } from "@formspree/react";
+import { AppWrapper } from "../components";
+import { ContactType, CreateContactForm } from "../types";
+import { useContactFormSubmit } from "../hooks";
 
 const Contact = (): JSX.Element => {
   const form = useForm({
     initialValues: {
       email: "",
       message: "",
-      type: "F" as ContactType,
-      accepted: false,
+      type: ContactType.Feedback,
+      acceptedTerms: false,
     },
     validate: {
-      email: (value, values) => !/^\S+@\S+$/.test(value) && values.type === "C" && "Ugyldig epost",
+      email: (value, values) => !/^\S+@\S+$/.test(value) && values.type === ContactType.Contact && "Ugyldig epost",
       message: (value) => !(value.length > 0) && "Meldingen kan ikke være tom",
-      accepted: (value: boolean) => !value && "Du må godta vilkårene",
+      acceptedTerms: (value: boolean) => !value && "Du må godta vilkårene",
     },
   });
-  const formKey: string = process.env.REACT_APP_FORMSPREE_KEY ?? "";
-  useEffect(() => {
-    console.log(formKey);
-  }, [formKey]);
+  const { isLoading, isError, isSuccess, submit } = useContactFormSubmit(
+    process.env.REACT_APP_API_CONTACT_ENDPOINT ?? ""
+  );
 
-  const [state, handleSubmit] = useFormspreeForm(formKey);
-
-  const handleFormSubmit = async (values: ContactValues) => {
-    await handleSubmit(values);
+  const handleFormSubmit = async (values: CreateContactForm) => {
+    console.log("triggered");
+    await submit(values);
   };
 
-  const isContact = form.values.type === "C";
+  const isContact = form.values.type === ContactType.Contact;
 
   return (
     <AppWrapper>
@@ -51,7 +48,10 @@ const Contact = (): JSX.Element => {
         <small>Bruk dette skjemaet om du har forslag til forbedring eller bare ønsker å komme i kontakt med oss.</small>
       </Container>
       <Container size="md" p="md">
-        <Box component="form" onSubmit={form.onSubmit((values: ContactValues) => handleFormSubmit(values))}>
+        <Box
+          component="form"
+          onSubmit={form.onSubmit(async (values: CreateContactForm) => await handleFormSubmit(values))}
+        >
           <Stack>
             <div>
               <Text size="sm" sx={{ marginBottom: 2 }}>
@@ -59,8 +59,8 @@ const Contact = (): JSX.Element => {
               </Text>
               <SegmentedControl
                 data={[
-                  { label: "Feedback", value: "F" },
-                  { label: "Kontakt", value: "C" },
+                  { label: "Feedback", value: ContactType.Feedback },
+                  { label: "Kontakt", value: ContactType.Contact },
                 ]}
                 {...form.getInputProps("type")}
               />
@@ -78,24 +78,24 @@ const Contact = (): JSX.Element => {
               />
             )}
             <Checkbox
-              {...form.getInputProps("accepted")}
+              {...form.getInputProps("acceptedTerms")}
               label={
                 isContact
                   ? "Jeg aksepterer at informasjonen blir lagret for å kontakte meg"
                   : "Jeg aksepterer at informasjonen blir lagret for å forbedre applikasjonen"
               }
             />
-            {state.errors ?? (
+            {isError ?? (
               <Alert color={"red"} title="Oisann😨">
                 Noe gikk galt. Prøv igjen senere.
               </Alert>
             )}
-            {state.succeeded && (
+            {isSuccess ?? (
               <Alert color={"green"} title="Takk!🙏">
                 Vi har mottatt meldingen din. Vi vil svare så fort vi kan.
               </Alert>
             )}
-            <Button type="submit" loading={state.submitting} loaderPosition="right">
+            <Button type="submit" loading={isLoading} loaderPosition="right">
               Send
             </Button>
           </Stack>

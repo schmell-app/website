@@ -1,6 +1,5 @@
-import nb from "../assets/content/privacy/nb";
-import en from "../assets/content/privacy/en";
-import { Privacy } from "../types/privacy";
+import { nb, en } from "../assets";
+import { Privacy } from "../types";
 
 const usePrivacy = (locale: "nb" | "en"): Privacy => (locale === "en" ? en : nb);
 

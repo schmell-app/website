@@ -4,7 +4,7 @@ import iPhonePlayTwo from "../../assets/img/iPhonePlay-1.png";
 import React from "react";
 import { useMediaQuery } from "@mantine/hooks";
 import { Link } from "react-router-dom";
-import AppStoreBlackButton from "../../assets/vectors/common/AppStoreBlackButton";
+import { AppStoreBlackButton } from "../../assets";
 
 const SlideFour = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");

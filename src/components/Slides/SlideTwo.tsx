@@ -2,7 +2,7 @@ import { Image, Grid } from "@mantine/core";
 import React from "react";
 import iPhoneSettings from "../../assets/img/iPhoneSettings.png";
 import { Link } from "react-router-dom";
-import AppStoreBlackButton from "../../assets/vectors/common/AppStoreBlackButton";
+import { AppStoreBlackButton } from "../../assets";
 import { useMediaQuery } from "@mantine/hooks";
 
 const SlideOne = (): JSX.Element => {

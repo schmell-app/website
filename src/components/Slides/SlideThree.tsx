@@ -3,7 +3,7 @@ import { Grid, Image } from "@mantine/core";
 import iPhoneHelp from "../../assets/img/iPhoneHelp.png";
 import iPhoneHelpTwo from "../../assets/img/iPhoneHelp-1.png";
 import { Link } from "react-router-dom";
-import AppStoreBlackButton from "../../assets/vectors/common/AppStoreBlackButton";
+import { AppStoreBlackButton } from "../../assets";
 import { useMediaQuery } from "@mantine/hooks";
 
 const SlideThree = (): JSX.Element => {

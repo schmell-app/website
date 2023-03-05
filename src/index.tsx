@@ -2,9 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./routes/Home";
-import Contact from "./routes/Contact";
-import Privacy from "./routes/Privacy";
+import { Home, Contact, Privacy } from "./routes";
 
 const router = createBrowserRouter([
   {
