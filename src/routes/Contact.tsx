@@ -85,12 +85,12 @@ const Contact = (): JSX.Element => {
                   : "Jeg aksepterer at informasjonen blir lagret for å forbedre applikasjonen"
               }
             />
-            {isError ?? (
+            {isError && (
               <Alert color={"red"} title="Oisann😨">
                 Noe gikk galt. Prøv igjen senere.
               </Alert>
             )}
-            {isSuccess ?? (
+            {isSuccess && (
               <Alert color={"green"} title="Takk!🙏">
                 Vi har mottatt meldingen din. Vi vil svare så fort vi kan.
               </Alert>
