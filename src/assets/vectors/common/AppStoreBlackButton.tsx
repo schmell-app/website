@@ -1,7 +1,7 @@
 import React from "react";
 
 const AppStoreBlackButton = () => (
-  <svg id="livetype" xmlns="http://www.w3.org/2000/svg" width="119.66407" height="40" viewBox="0 0 119.66407 40">
+  <svg id="livetype" xmlns="http://www.w3.org/2000/svg" width="120" height="40" viewBox="0 0 120 40">
     <g>
       <g>
         <g>
